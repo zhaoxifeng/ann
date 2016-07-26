@@ -13,7 +13,10 @@ public:
 	void Add(Layer* p);
 	Vector Activate(const Vector& p) const;
 	void Train(const Vector& p, const Vector& t);
+	void Train(const vector<Vector>& ps, const vector<Vector>& ts);
 private:
+	double PerformanceEvaluation(const vector<Vector>& ps, const vector<Vector>& ts, vector<int>& vs, int m);
+	bool IsMonotonicallyIncreasing(vector<double>::const_iterator& start, vector<double>::const_iterator& end);
 	vector<Layer*> layers;
 	double alpha;
 };
