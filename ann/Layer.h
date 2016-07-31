@@ -1,9 +1,12 @@
 #pragma once
+
+#include "Vector.h"
+#include "Matrix.h"
+#include <iostream>
 class Vector;
 class Matrix;
 class TransferFunction;
-#include "Vector.h"
-#include "Matrix.h"
+using namespace std;
 class Layer
 {
 public:
@@ -27,6 +30,8 @@ public:
 
 	Vector& Bias();
 
+	friend istream& operator>>(istream& s, Layer& layer);
+	friend ostream& operator<<(ostream& s, const Layer& layer);
 
 private:
 	//number of neurons

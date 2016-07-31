@@ -24,7 +24,7 @@ Network::~Network()
 
 void Network::Add(Layer* p)
 {
-
+	layers.push_back(p);
 }
 Vector Network::Activate(const Vector& p) const
 {
@@ -85,18 +85,18 @@ void Network::Train(const vector<Vector>& ps, const vector<Vector>& ts)
 {
 	vector<int> shuffled;
 	int n = ps.size();
-	int m = n * 0.15;
+	int m = int (n * 0.15);
 	for (int i = 0; i < n; i++)
 		shuffled.push_back(i);
 
 	// obtain a time-based seed:
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	unsigned long seed = (unsigned long) std::chrono::system_clock::now().time_since_epoch().count();
 	shuffle(shuffled.begin(), shuffled.end(), std::default_random_engine(seed));
 
 	//0~m-1 is used to do network validation
 	//m~n-1 is used to do network trainning
 	//early stop means once the performance is getting worse k times, trainning stop 
-	int k = 3;
+	unsigned int k = 3;
 	vector<double> performances;
 	for (int i = m; i < m; i++)
 	{
@@ -124,3 +124,25 @@ bool Network::IsMonotonicallyIncreasing(vector<double>::const_iterator& start, v
 }
 
 
+istream& operator>>(istream& s, Network& network)
+{
+	s >> network.alpha;
+	size_t n = network.layers.size();
+	s >> n;
+	for (size_t i = 0; i < n; ++i)
+	{
+		Layer* layer = new Layer();
+		network.layers.push_back(layer);
+		s >> *layer;
+	}
+	return s;
+}
+ostream& operator<<(ostream& s, const Network& network)
+{
+	s << network.alpha;
+	size_t n = network.layers.size();
+	s << n;
+	for (size_t i = 0; i < n; ++i)
+		s << network.layers[i];
+	return s;
+}

@@ -358,3 +358,21 @@ double Matrix::Determinate() const
 		det *= B[r][r];
 	return det;
 }
+
+istream& operator>>(istream& s, Matrix& m)
+{
+	s >> m.rows;
+	s >> m.cols;
+	m.p = new Vector[m.rows];
+	for (int i = 0; i < m.rows; ++i)
+		s >> m[i];
+	return s;
+}
+ostream& operator<<(ostream& s, const Matrix& m)
+{
+	s << m.rows;
+	s << m.cols;
+	for (int i = 0; i < m.rows; ++i)
+		s << m[i];
+	return s;
+}

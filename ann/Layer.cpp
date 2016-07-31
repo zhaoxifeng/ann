@@ -2,12 +2,14 @@
 #include "Layer.h"
 #include "TransferFunction.h"
 #include "Vector.h"
+#include <fstream>
+
 Layer::Layer()
 {
 	S = 0;
 	R = 0;
 }
-Layer::Layer(int numOfInputs, int numOfNeurons)
+Layer::Layer(int numOfNeurons, int numOfInputs) : S(numOfNeurons), R(numOfInputs), W(S, R)
 {
 
 }
@@ -46,3 +48,22 @@ Vector& Layer::Bias()
 	return b;
 }
 
+istream& operator>>(istream& s, Layer& layer)
+{
+	s >> layer.S;
+	s >> layer.R;
+	s >> layer.W;
+	s >> layer.b;
+	s >> layer.f;
+	return s;
+}
+
+ostream& operator<<(ostream& s, const Layer& layer)
+{
+	s << layer.S;
+	s << layer.R;
+	s << layer.W;
+	s << layer.b;
+	s << *layer.f;
+	return s;
+}

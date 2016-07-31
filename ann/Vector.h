@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+using namespace std;
 class Matrix;
 class Vector
 {
@@ -47,6 +49,9 @@ public:
 	Matrix operator^ (const Vector& other) const;
 	int GetDimension() const;
 	void Destruct();
+
+	friend istream& operator>>(istream& s, Vector& v);
+	friend ostream& operator<<(ostream& s, const Vector& v);
 private:
 	int n;
 	double* p;

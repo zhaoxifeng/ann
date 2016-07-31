@@ -193,3 +193,20 @@ void Vector::Destruct()
 		n = 0;
 	}
 }
+
+istream& operator >> (istream& s, Vector& v)
+{
+	s >> v.n;
+	v.p = new double[v.n];
+	for (int i = 0; i < v.n; ++i)
+		s >> v[i];
+	return s;
+}
+
+ostream& operator<<(ostream& s, const Vector& v)
+{
+	s << v.n;
+	for (int i = 0; i < v.n; ++i)
+		s << v[i];
+	return s;
+}
