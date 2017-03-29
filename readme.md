@@ -7,7 +7,9 @@ concise logic, and beutiful mathematics if you read it hardly.
 # NO LISENCE RESTRICTION
 
 There is no restriction to copy, share, and reuse the code.
+
 #NEXT
+
 Incorporate CNN, the most clear CNN paper is here: to be added
 
 # CONTACT
