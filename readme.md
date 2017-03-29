@@ -8,7 +8,7 @@ concise logic, and beutiful mathematics if you read it hardly.
 
 There is no restriction to copy, share, and reuse the code.
 
-#NEXT
+# NEXT
 
 Incorporate CNN, the most clear CNN paper is here: to be added
 
